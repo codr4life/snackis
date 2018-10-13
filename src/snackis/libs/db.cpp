@@ -15,8 +15,8 @@ namespace snackis::libs {
     add_fimp(env.sym("new-table"),
              {snabl::Box(env.sym_type)},
              [&env, &table_type](snabl::Fimp &fimp) {
-               env.push(table_type, TablePtr::make(&table_type.pool,
-                                                   env.pop().as<snabl::Sym>()));
+               const auto id(env.pop().as_sym);
+               env.push(table_type, TablePtr::make(&table_type.pool, id));
              });
   }
 }
