@@ -5,7 +5,7 @@
 #include "snackis/db/def.hpp"
 
 namespace snackis::db {
-  struct Table: public Def {
+  struct Table: Def {
     Table(snabl::Sym id): Def(id) { }
   };
   

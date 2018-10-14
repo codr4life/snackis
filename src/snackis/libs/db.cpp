@@ -8,8 +8,7 @@
 namespace snackis::libs {
   using namespace snackis::db;
 
-  DB::DB(snabl::Env &env, const string &parent_qid):
-    snabl::Lib(env, parent_qid, env.sym("db")) {
+  DB::DB(snabl::Env &env): snabl::Lib(env, env.sym("db")) {
     auto &table_type(add_type<TableType>(env.sym("Table"), {&env.root_type}));
 
     add_fimp(env.sym("new-table"),

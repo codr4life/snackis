@@ -5,9 +5,8 @@
 #include "snabl/lib.hpp"
 
 namespace snackis::libs {
-  struct DB: public snabl::Lib {
-  public:
-    DB(snabl::Env &env, const string &parent_qid);
+  struct DB: snabl::Lib {
+    DB(snabl::Env &env);
   };
 }
 
