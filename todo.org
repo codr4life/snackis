@@ -6,3 +6,5 @@
 * link sqlite
 ** hook in Context
 * generate create sql
+* peers/threads/posts
+** import/export encrypted data

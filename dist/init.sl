@@ -1,6 +1,6 @@
-'user
-['id db.new-str-column] []
+'peer
+['name db.new-str-column] []
 db.new-table
-let: user-table
+let: peer-table
 
-@db @user-table create sync!
+@db @peer-table create sync!
