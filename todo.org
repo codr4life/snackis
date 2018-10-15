@@ -6,10 +6,7 @@
 * link sqlite
 ** hook in Context
 * generate create sql
-* peers/threads/posts
-** import/export encrypted data
-* add notebook
-** add gui lib
+* add gui lib
 ** add new-page(Str) func
-*** add gui.Window type
-*** return page window
+** return panel
+*** add gui.Panel type
