@@ -7,8 +7,12 @@
 ** hook in Context
 * generate create sql
 * add gui lib
-** add new-page(icon, title) func
+** add new-tab-set
+** add new-tab(icon, title) func
 ** return box
+*** add gui.Widget type
 *** add gui.Box type
 * add setup view
-** show instead of notebook if new db
+** show before tabs if new db
+* add login view
+** show before tabs
