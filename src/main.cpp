@@ -5,32 +5,30 @@
 
 using namespace snackis;
 
-static gboolean on_key(gpointer _, GdkEventKey *ev, gpointer __) {
-  cout << stderr << ev->keyval << endl;
-  //gtk_widget_grab_focus();
-  return false;
-}
-
-GtkWidget *new_page (GtkNotebook *parent, const char *title) {
+GtkWidget *new_page (GtkNotebook *parent, const char *icon, const char *title) {
   auto f(gtk_box_new(GTK_ORIENTATION_VERTICAL, 0));
-  gtk_notebook_append_page(parent, f, gtk_label_new(title));
+  auto l(gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5));
+  auto i(gtk_image_new_from_file(snabl::fmt("images/%0.png", {icon}).c_str()));
+  gtk_container_add(GTK_CONTAINER(l), i);
+  gtk_container_add(GTK_CONTAINER(l), gtk_label_new_with_mnemonic(title));
+  gtk_notebook_append_page(parent, f, l);
+  gtk_widget_show_all(l);
   return f;
 }
 
 static void on_activate(GtkApplication *app, gpointer user_data) {
   auto w(gtk_application_window_new(app));
   gtk_window_set_icon_from_file(GTK_WINDOW(w), "images/snackis.ico", nullptr);
-  g_signal_connect(G_OBJECT(w), "key_press_event", G_CALLBACK(on_key), nullptr);
   gtk_window_set_title(GTK_WINDOW(w), "Snackis v0.1.1");
   gtk_window_maximize(GTK_WINDOW(w));
 
   auto ps(gtk_notebook_new());
-  new_page(GTK_NOTEBOOK(ps), "0 Console");
-  new_page(GTK_NOTEBOOK(ps), "1 In");
-  new_page(GTK_NOTEBOOK(ps), "2 Out");
-  new_page(GTK_NOTEBOOK(ps), "4 Peers");
-  new_page(GTK_NOTEBOOK(ps), "5 Threads");
-  new_page(GTK_NOTEBOOK(ps), "6 Settings");
+  new_page(GTK_NOTEBOOK(ps), "console", "_0 Console");
+  new_page(GTK_NOTEBOOK(ps), "in", "_1 In");
+  new_page(GTK_NOTEBOOK(ps), "out", "_2 Out");
+  new_page(GTK_NOTEBOOK(ps), "peers", "_3 Peers");
+  new_page(GTK_NOTEBOOK(ps), "threads", "_4 Threads");
+  new_page(GTK_NOTEBOOK(ps), "settings", "_5 Settings");
   gtk_container_add(GTK_CONTAINER(w), ps);
   gtk_widget_show_all(w);
   
