@@ -8,5 +8,5 @@
 * generate create sql
 * add gui lib
 ** add new-page(Str) func
-** return panel
-*** add gui.Panel type
+** return box
+*** add gui.Box type
