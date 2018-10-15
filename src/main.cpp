@@ -19,7 +19,7 @@ GtkWidget *new_page (GtkNotebook *parent, const char *title) {
 
 static void on_activate(GtkApplication *app, gpointer user_data) {
   auto w(gtk_application_window_new(app));
-  gtk_window_set_icon_from_file(GTK_WINDOW(w), "snackis.ico", nullptr);
+  gtk_window_set_icon_from_file(GTK_WINDOW(w), "images/snackis.ico", nullptr);
   g_signal_connect(G_OBJECT(w), "key_press_event", G_CALLBACK(on_key), nullptr);
   gtk_window_set_title(GTK_WINDOW(w), "Snackis v0.1.1");
   gtk_window_maximize(GTK_WINDOW(w));
@@ -37,6 +37,7 @@ static void on_activate(GtkApplication *app, gpointer user_data) {
   snabl::Env env;
   env.add_lib<libs::DB>();
   env.use(env.sym("s.abc"));
+  //env.load("scripts/init.sl");
 }
 
 int main(int argc, char *argv[]) {

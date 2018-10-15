@@ -10,3 +10,5 @@
 ** add new-page(Str) func
 ** return box
 *** add gui.Box type
+* add setup view
+** show instead of notebook if new db
