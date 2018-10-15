@@ -6,10 +6,13 @@ set(CMAKE_CXX_COMPILER g++)
 
 add_compile_options(-std=c++17 -Wall -Werror -O2 -g)
 
-file(GLOB_RECURSE sources src/snackis/*.cpp)
+find_package(wxWidgets COMPONENTS core base REQUIRED)
+include(${wxWidgets_USE_FILE})
 
-add_executable(snackis ${sources} src/main.cpp)
+file(GLOB_RECURSE src src/snackis/*.cpp)
+
+add_executable(snackis ${src})
 target_include_directories(snackis PUBLIC src/)
-target_link_libraries(snackis snabl pthread)
+target_link_libraries(snackis snabl pthread ${wxWidgets_LIBRARIES})
 
 install(FILES build/snackis DESTINATION bin PERMISSIONS WORLD_EXECUTE)
