@@ -1,7 +1,8 @@
 #ifndef SNACKIS_DB_TABLE_HPP
 #define SNACKIS_DB_TABLE_HPP
 
-#include "snabl/ptr.hpp"
+#include <snabl/ptr.hpp>
+
 #include "snackis/db/def.hpp"
 
 namespace snackis::db {

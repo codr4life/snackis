@@ -1,10 +1,9 @@
 * let @db var from main.cpp
 ** add db::Context type
 * add new-str-column func
+** TEXT
 * add key/cols args to new-table
 * add create func
-* link sqlite
-** hook in Context
 * generate create sql
 * add gui lib
 ** add new-tab-set

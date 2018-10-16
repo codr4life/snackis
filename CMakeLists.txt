@@ -13,6 +13,6 @@ file(GLOB_RECURSE src src/snackis/*.cpp)
 
 add_executable(snackis ${src} src/main.cpp)
 target_include_directories(snackis PUBLIC src/ ${GTK3_INCLUDE_DIRS})
-target_link_libraries(snackis snabl pthread ${GTK3_LIBRARIES})
+target_link_libraries(snackis snabl sqlite3 pthread ${GTK3_LIBRARIES})
 
 install(FILES build/snackis DESTINATION bin PERMISSIONS WORLD_EXECUTE)

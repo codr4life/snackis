@@ -1,11 +1,22 @@
 #ifndef SNACKIS_LIB_DB_HPP
 #define SNACKIS_LIB_DB_HPP
 
-#include "snackis/std.hpp"
-#include "snabl/lib.hpp"
+#include <snabl/lib.hpp>
 
-namespace snackis::libs {
+#include "snackis/std.hpp"
+
+namespace snackis::db {
+  struct ContextType;
+  struct TableType;
+  struct ColumnType;
+}
+
+namespace snackis::libs {  
   struct DB: snabl::Lib {
+    db::ContextType &context_type;
+    db::TableType &table_type;
+    db::ColumnType &column_type;
+    
     DB(snabl::Env &env);
   };
 }

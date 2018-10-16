@@ -1,7 +1,13 @@
 #include <gtk/gtk.h>
-#include "snabl/env.hpp"
-#include "snabl/fmt.hpp"
+#include <sqlite3.h>
+
+#include <snabl/env.hpp>
+#include <snabl/fmt.hpp>
+
+#include "snackis/db/context.hpp"
+#include "snackis/error.hpp"
 #include "snackis/libs/db.hpp"
+#include "snackis/types/db/context.hpp"
 
 using namespace snackis;
 
@@ -31,10 +37,23 @@ static void on_activate(GtkApplication *app, gpointer user_data) {
   new_page(GTK_NOTEBOOK(ps), "settings", "_5 Settings");
   gtk_container_add(GTK_CONTAINER(w), ps);
   gtk_widget_show_all(w);
-  
+
   snabl::Env env;
-  env.add_lib<libs::DB>();
+  auto &db_lib(env.add_lib<libs::DB>());
   env.use(env.sym("s.abc"));
+
+  sqlite3 *db(nullptr);
+
+  if (sqlite3_open_v2("db.dat", &db,
+                      SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE |
+                      SQLITE_OPEN_FULLMUTEX | SQLITE_OPEN_SHAREDCACHE,
+                      nullptr) != SQLITE_OK) {
+    throw Error(snabl::fmt("Error opening db: %0", {sqlite3_errmsg(db)}));
+  }
+
+  env.let(env.sym("db"),
+          db_lib.context_type,
+          db::ContextPtr::make(&db_lib.context_type.pool, db));
   //env.load("scripts/init.sl");
 }
 
