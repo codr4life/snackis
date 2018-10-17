@@ -1,8 +1,8 @@
-* let @db var from main.cpp
-** add db::Context type
+* add key/cols args to new-table
 * add new-str-column func
 ** TEXT
-* add key/cols args to new-table
+* add new-bin-column func
+** BLOB
 * add create func
 * generate create sql
 * add gui lib
