@@ -1,8 +1,9 @@
-* add key/cols args to new-table
 * add new-str-column func
 ** TEXT
 * add new-bin-column func
 ** BLOB
+* add libsodium
+** add PrivKey: PubKey
 * add create func
 * generate create sql
 * add gui lib

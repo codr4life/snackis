@@ -4,4 +4,4 @@
 db.new-table
 let: peer-table
 
-@db @peer-table create sync!
+@db @peer-table async: db.create sync!

@@ -6,10 +6,25 @@
 #include "snackis/db/def.hpp"
 
 namespace snackis::db {  
-  struct Column: Def {
-    Column(snabl::Sym id): Def(id) { }
+  struct Type { };
+
+  struct Bin: Type {
+    static const Bin type;
   };
   
+  struct I64: Type {
+    static const I64 type;
+  };
+      
+  struct Str: Type {
+    static const Str type;
+  };
+  
+  struct Column: Def {
+    const Type &type;
+    Column(const Type &type, snabl::Sym id): Def(id), type(type) { }
+  };
+
   using ColumnPtr = snabl::Ptr<Column>;
 }
 

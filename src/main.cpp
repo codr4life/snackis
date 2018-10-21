@@ -23,21 +23,6 @@ GtkWidget *new_page (GtkNotebook *parent, const char *icon, const char *title) {
 }
 
 static void on_activate(GtkApplication *app, gpointer user_data) {
-  auto w(gtk_application_window_new(app));
-  gtk_window_set_icon_from_file(GTK_WINDOW(w), "images/snackis.ico", nullptr);
-  gtk_window_set_title(GTK_WINDOW(w), "Snackis v0.1.1");
-  gtk_window_maximize(GTK_WINDOW(w));
-
-  auto ps(gtk_notebook_new());
-  new_page(GTK_NOTEBOOK(ps), "console", "_0 Console");
-  new_page(GTK_NOTEBOOK(ps), "in", "_1 In");
-  new_page(GTK_NOTEBOOK(ps), "out", "_2 Out");
-  new_page(GTK_NOTEBOOK(ps), "peers", "_3 Peers");
-  new_page(GTK_NOTEBOOK(ps), "threads", "_4 Threads");
-  new_page(GTK_NOTEBOOK(ps), "settings", "_5 Settings");
-  gtk_container_add(GTK_CONTAINER(w), ps);
-  gtk_widget_show_all(w);
-
   snabl::Env env;
   auto &db_lib(env.add_lib<libs::DB>());
   env.use(env.sym("s.abc"));
@@ -54,7 +39,23 @@ static void on_activate(GtkApplication *app, gpointer user_data) {
   env.let(env.sym("db"),
           db_lib.context_type,
           db::ContextPtr::make(&db_lib.context_type.pool, db));
-  //env.load("scripts/init.sl");
+
+  env.load("scripts/init.sl");
+  
+  auto w(gtk_application_window_new(app));
+  gtk_window_set_icon_from_file(GTK_WINDOW(w), "images/snackis.ico", nullptr);
+  gtk_window_set_title(GTK_WINDOW(w), "Snackis v0.1.1");
+  gtk_window_maximize(GTK_WINDOW(w));
+
+  auto ps(gtk_notebook_new());
+  new_page(GTK_NOTEBOOK(ps), "console", "_0 Console");
+  new_page(GTK_NOTEBOOK(ps), "in", "_1 In");
+  new_page(GTK_NOTEBOOK(ps), "out", "_2 Out");
+  new_page(GTK_NOTEBOOK(ps), "peers", "_3 Peers");
+  new_page(GTK_NOTEBOOK(ps), "threads", "_4 Threads");
+  new_page(GTK_NOTEBOOK(ps), "settings", "_5 Settings");
+  gtk_container_add(GTK_CONTAINER(w), ps);
+  gtk_widget_show_all(w);
 }
 
 int main(int argc, char *argv[]) {

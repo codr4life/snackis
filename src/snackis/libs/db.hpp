@@ -18,6 +18,7 @@ namespace snackis::libs {
     db::ColumnType &column_type;
     
     DB(snabl::Env &env);
+    void init();
   };
 }
 
