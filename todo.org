@@ -1,17 +1,9 @@
-* add new-str-column func
-** TEXT
-* add new-bin-column func
-** BLOB
 * add libsodium
 ** add PrivKey: PubKey
-* add create func
-* generate create sql
+* generate table create sql
 * add gui lib
-** add new-tab-set
-** add new-tab(icon, title) func
-** return box
-*** add gui.Widget type
-*** add gui.Box type
+** integrate gtk+ event loop with tasks
+** step from dedicated task while !quit
 * add setup view
 ** show before tabs if new db
 * add login view
