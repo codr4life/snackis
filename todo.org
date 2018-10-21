@@ -1,9 +1,11 @@
+* set quit on main window close
+* add gui lib
+** add async gui.handle-events
+** step from dedicated task while t
+** add while loop
 * add libsodium
 ** add PrivKey: PubKey
 * generate table create sql
-* add gui lib
-** integrate gtk+ event loop with tasks
-** step from dedicated task while !quit
 * add setup view
 ** show before tabs if new db
 * add login view
