@@ -23,14 +23,12 @@ namespace snackis::libs {
              {snabl::Box(env.sym_type), snabl::Box(env.seq_type),
                  snabl::Box(env.seq_type)},
              [this](snabl::Fimp &fimp) {
-               const auto id(env.pop().as_sym);
-               auto t(TablePtr::make(&table_type.pool, id));
-               
-               optional<snabl::Box> c;
-               const auto &key(env.pop().iter());
-               while ((c = key->call())) { t->add_key_column(c->as<ColumnPtr>()); }
-               
                const auto &cols(env.pop().iter());
+               const auto &key(env.pop().iter());
+               const auto id(env.pop().as_sym);
+               auto t(TablePtr::make(&table_type.pool, id));               
+               optional<snabl::Box> c;
+               while ((c = key->call())) { t->add_key_column(c->as<ColumnPtr>()); }
                while ((c = cols->call())) { t->add_column(c->as<ColumnPtr>()); }
                env.push(table_type, t);
              });
