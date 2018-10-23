@@ -1,3 +1,6 @@
+* redirect env.stdout to console
+** rebind to stringstream
+** add separate task to update console
 * add libsodium
 ** add PrivKey: PubKey
 * generate table create sql

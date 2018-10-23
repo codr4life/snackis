@@ -27,9 +27,15 @@ namespace snackis::libs {
                const auto &key(env.pop().iter());
                const auto id(env.pop().as_sym);
                auto t(TablePtr::make(&table_type.pool, id));               
-               optional<snabl::Box> c;
-               while ((c = key->call())) { t->add_key_column(c->as<ColumnPtr>()); }
-               while ((c = cols->call())) { t->add_column(c->as<ColumnPtr>()); }
+
+               while (key->call(env)) {
+                 t->add_key_column(env.pop().as<ColumnPtr>());
+               }
+               
+               while (cols->call(env)) {
+                 t->add_column(env.pop().as<ColumnPtr>());
+               }
+               
                env.push(table_type, t);
              });
 
@@ -63,12 +69,10 @@ namespace snackis::libs {
                auto t(env.pop().as<TablePtr>());
                auto db(env.pop().as<ContextPtr>());
                
-               auto out(async(env, [t, db]() {
-                     t->create(*db);
-                     return nullopt;
-                   }));
-
-               if (out) { env.push(*out); }
+               env.push_async([t, db]() {
+                   t->create(*db);
+                   return nullopt;
+                 });
              });
   }
 }
