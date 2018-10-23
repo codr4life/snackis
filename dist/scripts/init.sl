@@ -1,3 +1,5 @@
+''Welcome to Snackis'' say
+
 'peers
 ['name db.new-str-column]
 ['key db.new-bin-column]
@@ -6,4 +8,8 @@ let: peer-table
 
 @db @peer-table await: db.create
 
-while: gui.run
+while: (
+  yield!
+  gui.refresh-console
+  gui.run
+)

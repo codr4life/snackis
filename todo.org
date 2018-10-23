@@ -4,6 +4,3 @@
 * add libsodium
 ** add PrivKey: PubKey
 * generate table create sql
-* add login view
-** show in initial tab
-*** hide on ok

@@ -8,6 +8,8 @@
 namespace snackis::libs {  
   struct GUI: snabl::Lib {
     bool quit=false;
+    stringstream stdout;
+    GtkWidget *console;
     
     GUI(snabl::Env &env);
     void init();
