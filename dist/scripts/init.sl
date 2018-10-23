@@ -6,4 +6,4 @@ let: peer-table
 
 @db @peer-table await: db.create
 
-while:, await: gui.run
+while: gui.run

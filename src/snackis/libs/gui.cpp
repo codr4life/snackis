@@ -18,7 +18,7 @@ namespace snackis::libs {
                    });
                } else {
                  env.push_async([this]() {
-                     if (gtk_events_pending()) { gtk_main_iteration(); }
+                     gtk_main_iteration();
                      return snabl::Box(env.bool_type, true);
                    });
                }
