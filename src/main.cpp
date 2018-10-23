@@ -13,7 +13,6 @@
 using namespace snackis;
 
 snabl::Env env;
-bool quit = false;
 
 GtkBox *new_page (GtkNotebook *parent, const char *icon, const char *title) {
   auto f(gtk_box_new(GTK_ORIENTATION_VERTICAL, 0));
@@ -39,12 +38,19 @@ static void init_console(GtkBox *parent) {
   gtk_box_pack_end(parent, s, true, true, 0);
 }
 
+static void on_close(GtkWidget *widget, gpointer _) {
+  auto &lib(*dynamic_cast<libs::GUI *>(env.get_lib(env.sym("gui"))));
+  lib.quit = true;
+}
+
 static void init_gui() {
   auto w(gtk_window_new(GTK_WINDOW_TOPLEVEL));
   gtk_window_set_icon_from_file(GTK_WINDOW(w), "images/snackis.ico", nullptr);
   gtk_window_set_title(GTK_WINDOW(w), "Snackis v0.1.1");
   gtk_window_maximize(GTK_WINDOW(w));
 
+  g_signal_connect(G_OBJECT(w), "destroy", G_CALLBACK(on_close), NULL);
+  
   auto ps(gtk_notebook_new());
   init_console(new_page(GTK_NOTEBOOK(ps), "console", "_0 Console"));
   new_page(GTK_NOTEBOOK(ps), "in", "_1 In");

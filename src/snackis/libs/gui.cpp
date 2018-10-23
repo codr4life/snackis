@@ -13,10 +13,11 @@ namespace snackis::libs {
              {},
              [this](snabl::Fimp &fimp) {
                if (quit) {
-                 env.push(env.bool_type, false);
+                 env.push(*async(env, [this]() {
+                       return snabl::Box(env.bool_type, false);
+                     }));
                } else {
                  env.push(*async(env, [this]() {
-                       if (quit) { return snabl::Box(env.bool_type, false); }
                        if (gtk_events_pending()) { gtk_main_iteration(); }
                        return snabl::Box(env.bool_type, true);
                      }));

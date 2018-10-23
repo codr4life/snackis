@@ -1,4 +1,3 @@
-* set gui.quit on main window close
 * add libsodium
 ** add PrivKey: PubKey
 * generate table create sql

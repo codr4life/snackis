@@ -4,6 +4,6 @@
 db.new-table
 let: peer-table
 
-@db @peer-table sync: db.create
+@db @peer-table await: db.create
 
-while:, sync: gui.run
+while:, await: gui.run
