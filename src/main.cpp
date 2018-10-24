@@ -55,12 +55,12 @@ static void init_gui() {
   g_signal_connect(G_OBJECT(w), "destroy", G_CALLBACK(on_close), NULL);
   
   auto ps(gtk_notebook_new());
-  init_console(new_page(GTK_NOTEBOOK(ps), "console", "_0 Console"));
-  new_page(GTK_NOTEBOOK(ps), "in", "_1 In");
-  new_page(GTK_NOTEBOOK(ps), "out", "_2 Out");
-  new_page(GTK_NOTEBOOK(ps), "peers", "_3 Peers");
-  new_page(GTK_NOTEBOOK(ps), "threads", "_4 Threads");
-  new_page(GTK_NOTEBOOK(ps), "settings", "_5 Settings");
+  init_console(new_page(GTK_NOTEBOOK(ps), "console", "_1 Console"));
+  new_page(GTK_NOTEBOOK(ps), "in", "_2 In");
+  new_page(GTK_NOTEBOOK(ps), "out", "_3 Out");
+  new_page(GTK_NOTEBOOK(ps), "peers", "_4 Peers");
+  new_page(GTK_NOTEBOOK(ps), "threads", "_5 Threads");
+  new_page(GTK_NOTEBOOK(ps), "settings", "_6 Settings");
   gtk_container_add(GTK_CONTAINER(w), ps);
   gtk_widget_show_all(w);
 }

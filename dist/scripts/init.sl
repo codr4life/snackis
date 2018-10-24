@@ -6,7 +6,7 @@
 db.new-table
 let: peer-table
 
-@db @peer-table await: db.create
+@db @peer-table db.create
 
 while: (
   yield!

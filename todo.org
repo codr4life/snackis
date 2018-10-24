@@ -1,6 +1,6 @@
-* redirect env.stdout to console
-** rebind to stringstream
-** add separate task to update console
+* add console reader
+* redirect env.stdin to stringstream
+* write async repl() fn in snabl
 * add libsodium
 ** add PrivKey: PubKey
 * generate table create sql
