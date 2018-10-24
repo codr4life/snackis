@@ -3,9 +3,12 @@
 #include <snabl/env.hpp>
 #include <snabl/ptrs.hpp>
 
+#include "snackis/gui/loop.hpp"
 #include "snackis/libs/gui.hpp"
 
 namespace snackis::libs {
+  using namespace snackis::gui;
+
   GUI::GUI(snabl::Env &env): snabl::Lib(env, env.sym("gui")) { init(); }
 
   void GUI::init() {
@@ -14,13 +17,15 @@ namespace snackis::libs {
              [this](snabl::Fimp &fimp) {
                env.push_async([this]() -> optional<snabl::Box> {
                    if (stdout.tellp()) {
-                     auto buf(gtk_text_view_get_buffer(GTK_TEXT_VIEW(console)));
-                     GtkTextIter start;
-                     gtk_text_buffer_get_start_iter(buf, &start);
-                     gtk_text_buffer_place_cursor(buf, &start);
-                     const auto s(stdout.str());
-                     gtk_text_buffer_insert_at_cursor(buf, s.c_str(), s.size());
-                     stringstream().swap(stdout);
+                     loop_exec([this]() {
+                         auto buf(gtk_text_view_get_buffer(GTK_TEXT_VIEW(console)));
+                         GtkTextIter start;
+                         gtk_text_buffer_get_start_iter(buf, &start);
+                         gtk_text_buffer_place_cursor(buf, &start);
+                         const auto s(stdout.str());
+                         gtk_text_buffer_insert_at_cursor(buf, s.c_str(), s.size());
+                         stringstream().swap(stdout);
+                       });
                    }
 
                    return nullopt;

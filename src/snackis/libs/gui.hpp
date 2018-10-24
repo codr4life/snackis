@@ -5,7 +5,7 @@
 
 #include "snackis/std.hpp"
 
-namespace snackis::libs {  
+namespace snackis::libs {
   struct GUI: snabl::Lib {
     bool quit=false;
     stringstream stdout;
